@@ -1,0 +1,218 @@
+﻿
+@{
+    Layout = null;
+}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Characterization - My ASP.NET Application</title>
+    <link href="/css/prism.css" rel="stylesheet" type="text/css" />
+
+    <script src="/Scripts/modernizr-2.6.2.js"></script>
+
+    <script src="/Scripts/jquery-1.10.2.js"></script>
+
+    <script src="/Scripts/bootstrap.js"></script>
+    <script src="/Scripts/respond.js"></script>
+
+
+
+    <link href="/Content/bootstrap.css" rel="stylesheet" />
+    <link href="/Content/site.css" rel="stylesheet" />
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css">
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="@Url.Action("index","home")">Coder Foundry - Week 1 Exercises</a>
+            </div>
+            <div class="navbar-collapse collapse navbar-right">
+                <ul class="nav navbar-nav">
+                    <li><a href="@Url.Action("Week1","home")">Data Characterization</a></li>
+                    <li><a href="@Url.Action("Week1exercises","home")">Other Functions</a></li>
+                    <li><a href="@Url.Action("portfolio","home")">Back to Portfolio</a></li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+
+
+        <style>
+            body {
+                background-image: url("/images/stones.jpg");
+            }
+        </style>
+
+        <div class="jumbotron">
+            <h1>Data Characterization</h1>
+            <p class="lead">Enter up to 10 numbers and Click Calculate.</p>
+            <p id="calculate"><span class="btn btn-primary btn-lg">Calculate &raquo;</span></p>
+            <button type="button" class="btn btn-info btn-lg" id="myBtn">Javascript Code</button>
+        </div>
+
+        <div class="row" style="background-color: white; opacity:.8">
+
+            <div class="col-sm-12">
+                <h2>Enter Numbers between 1 and 100</h2>
+            </div>
+            <div class="col-md-4">
+                <form role="form">
+                    <div class="form-group">
+                        <label class="col-sm-4" for="input1">Value #1</label>
+                        <input class="col-sm-8 form-control" type="number" id="input1" />
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-4" for="input2">Value #2</label>
+                        <input class="col-sm-8 form-control" type="number" id="input2" />
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-4" for="input3">Value #3</label>
+                        <input class="col-sm-8 form-control" type="number" id="input3" />
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-4" for="input4">Value #4</label>
+                        <input class="col-sm-8 form-control" type="number" id="input4" />
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-4" for="input5">Value #5</label>
+                        <input class="col-sm-8 form-control" type="number" id="input5" />
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-4">
+                <form role="form">
+                    <div class="form-group">
+                        <label class="col-sm-4" for="input6">Value #6:</label>
+                        <input class="col-sm-8 form-control" type="number" id="input6" />
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-4" for="input7">Value #7:</label>
+                        <input class="col-sm-8 form-control" type="number" id="input7" />
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-4" for="input8">Value #8:</label>
+                        <input class="col-sm-8 form-control" type="number" id="input8" />
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-4" for="input9">Value #9:</label>
+                        <input class="col-sm-8 form-control" type="number" id="input9" />
+                    </div>
+                    <div>
+                        <label class="col-sm-4" for="input10">Value #10</label>
+                        <input class="col-sm-8 form-control" type="number" id="input10" />
+                    </div>
+                </form>
+            </div>
+
+            <div class="col-md-4">
+                <div class="well">
+                    <h2>Results</h2>
+                    <h1><span class="label label-info">Max:     <span id="max" class="badge"></span></span></h1>
+                    <h1><span class="label label-info">Min:   <span id="min" class="badge"></span></span></h1>
+                    <h1><span class="label label-info">Mean:   <span id="ave" class="badge"></span></span></h1>
+                    <h1><span class="label label-info">Sum:   <span id="sum" class="badge"></span></span></h1>
+                    <h1><span class="label label-info">Product:   <span id="product" class="badge"></span></span></h1>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="modal fade" id="myModal" role="dialog">
+                <div class="modal-dialog">
+                    <!-- Modal Header-->
+                    <div class="modal-content">
+                        <!-- Modal Body-->
+                        <div class="modal-body" style="padding:40px 50px;">
+                            <h2 style="background-color: white">  Java Script Code: </h2>
+                            <pre class="line-numbers"> <code class="language-javascript">
+$("#calculate").on("click", ".btn", function () {
+// initialize variables
+var max = 0;
+var min = 100;
+var count = 0;
+var sum = 0;
+var product = 1;
+//loop through each input
+for (var i = 1; i &lt;11; i++){
+    // get values
+    var currValue = $("#input" + i).val()
+    // ensure inputs are valid
+    if (!isNaN(parseInt(currValue)) && parseInt(currValue)&lt;=100 && parseInt(currValue) > 0) {
+        value = parseInt(currValue);
+/*
+Debugging Tool: alert(i + ": value - " + value + "  Max: " + max + "  Min: " + min + "  Sum: " + sum + "  count: " + count + "  product: " + product); 
+*/
+        // Additional Error Handling 
+        if (value != "") {
+            max = maxCompare(max, value);
+            min = minCompare(min, value);
+            count++;
+            sum = sum + value;
+            product = product * value;
+        }
+    }
+}
+$("#max").text(max);
+$("#min").text(min);
+$("#ave").text(sum / count);
+$('#sum').text(sum);
+$('#product').text(product);
+})
+//simple max and min functions
+function maxCompare(currentMax, newValue) {
+    if (currentMax >= newValue) { return currentMax; }
+    else if (currentMax &lt; newValue) { return newValue; }     
+}
+function minCompare(currentMin, newValue) {
+    if (currentMin &lt; newValue) { return currentMin; }
+    else if (currentMin > newValue) { return newValue; }     
+}
+                    </code></pre>
+                            <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Close</button>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div> <!--Modal Outline-->
+        </div><!-- Container-->
+
+        <script src="/js/index.js"></script>
+
+        <hr />
+        <footer style="vertical-align: -10px">
+            <p style="background-color: white; opacity:.8; height: 40px; text-align:center;padding-top:10px">&copy; 2016 - Aaron Rowan</p>
+        </footer>
+    </div>
+
+
+
+    <script type="text/javascript" src="/js/prism.js"></script>
+
+
+
+
+    <!-- Visual Studio Browser Link -->
+    <script type="application/json" id="__browserLink_initializationData">
+        {"appName":"Chrome","requestId":"c50ece88c25c4d0e91a6ccfb17665553"}
+    </script>
+    <script type="text/javascript" src="http://localhost:50280/e2c9697c006548eca76715ba65c08b9f/browserLink" async="async"></script>
+    <!-- End Browser Link -->
+
+</body>
+</html>
+sd
