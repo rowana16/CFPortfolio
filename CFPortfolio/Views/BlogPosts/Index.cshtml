@@ -13,14 +13,16 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Created)
+            <h4>@Html.DisplayNameFor(model => model.Title)</h4>
         </th>
+        <th>
+            <h4>@Html.DisplayNameFor(model => model.Created)</h4>
+        </th>
+       <!-- 
         <th>
             @Html.DisplayNameFor(model => model.Updated)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Title)
-        </th>
+       
         <th>
             @Html.DisplayNameFor(model => model.Slug)
         </th>
@@ -33,20 +35,23 @@
         <th>
             @Html.DisplayNameFor(model => model.Published)
         </th>
-        <th></th>
+            -->
+        <th><h4>Actions</h4></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
         <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.Created)
         </td>
+        <!--
         <td>
             @Html.DisplayFor(modelItem => item.Updated)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Title)
-        </td>
+        
         <td>
             @Html.DisplayFor(modelItem => item.Slug)
         </td>
@@ -59,6 +64,7 @@
         <td>
             @Html.DisplayFor(modelItem => item.Published)
         </td>
+            -->
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
             @Html.ActionLink("Details", "Details", new { id=item.Id }) |

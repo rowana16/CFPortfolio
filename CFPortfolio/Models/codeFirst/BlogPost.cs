@@ -16,6 +16,7 @@ namespace CFPortfolio.Models.codeFirst
         public int Id { get; set; }
         public DateTimeOffset Created{ get; set; }
         public DateTimeOffset? Updated { get; set; }
+        [Required()]
         public string Title { get; set; }
         public string Slug { get; set; }
         [Required()]
